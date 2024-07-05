@@ -1,0 +1,158 @@
+[
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "typer",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "typer",
+        "description": "typer",
+        "detail": "typer",
+        "documentation": {}
+    },
+    {
+        "label": "prompt",
+        "importPath": "PyInquirer",
+        "description": "PyInquirer",
+        "isExtraImport": true,
+        "detail": "PyInquirer",
+        "documentation": {}
+    },
+    {
+        "label": "print",
+        "importPath": "rich",
+        "description": "rich",
+        "isExtraImport": true,
+        "detail": "rich",
+        "documentation": {}
+    },
+    {
+        "label": "DirectoryRetriever",
+        "importPath": "directory_retriever",
+        "description": "directory_retriever",
+        "isExtraImport": true,
+        "detail": "directory_retriever",
+        "documentation": {}
+    },
+    {
+        "label": "DictStringConverter",
+        "importPath": "dict_string_converter",
+        "description": "dict_string_converter",
+        "isExtraImport": true,
+        "detail": "dict_string_converter",
+        "documentation": {}
+    },
+    {
+        "label": "DirectorySynchronizer",
+        "importPath": "directory_synchronizer",
+        "description": "directory_synchronizer",
+        "isExtraImport": true,
+        "detail": "directory_synchronizer",
+        "documentation": {}
+    },
+    {
+        "label": "VigenereCipher",
+        "importPath": "vingere_cipher",
+        "description": "vingere_cipher",
+        "isExtraImport": true,
+        "detail": "vingere_cipher",
+        "documentation": {}
+    },
+    {
+        "label": "DictStringConverter",
+        "kind": 6,
+        "importPath": "dict_string_converter",
+        "description": "dict_string_converter",
+        "peekOfCode": "class DictStringConverter:\n    @staticmethod\n    def convertToStr(data: dict) -> str:\n        # Use JSON to serialize the dictionary to a string\n        return json.dumps(data)\n    @staticmethod\n    def convertToDict(data_str: str) -> dict:\n        # Use JSON to deserialize the string back to a dictionary\n        return json.loads(data_str)",
+        "detail": "dict_string_converter",
+        "documentation": {}
+    },
+    {
+        "label": "DictionaryFormatter",
+        "kind": 6,
+        "importPath": "directory_formatter",
+        "description": "directory_formatter",
+        "peekOfCode": "class DictionaryFormatter:\n    def __init__(self, data):\n        self.data = data\n    def format_dict(self, data=None, indent=0):\n        if data is None:\n            data = self.data\n        result = \"\"\n        for key, value in data.items():\n            result += \" \" * indent + f\"{key}: \"\n            if isinstance(value, dict):",
+        "detail": "directory_formatter",
+        "documentation": {}
+    },
+    {
+        "label": "DirectoryRetriever",
+        "kind": 6,
+        "importPath": "directory_retriever",
+        "description": "directory_retriever",
+        "peekOfCode": "class DirectoryRetriever:\n    def __init__(self, folder_path):\n        self.folder_path = folder_path\n    def get_file_info(self, file_path):\n        try:\n            with open(file_path, 'r', encoding='utf-8') as file:\n                content = file.read()\n            return {\n                \"type\": \"file\",\n                \"content\": content",
+        "detail": "directory_retriever",
+        "documentation": {}
+    },
+    {
+        "label": "DirectorySynchronizer",
+        "kind": 6,
+        "importPath": "directory_synchronizer",
+        "description": "directory_synchronizer",
+        "peekOfCode": "class DirectorySynchronizer:\n    def __init__(self, folder_path):\n        self.folder_path = folder_path\n    def create_file(self, file_path, content):\n        try:\n            with open(file_path, 'w') as file:\n                file.write(content)\n            return {\"status\": \"success\"}\n        except Exception as e:\n            return {\"status\": \"error\", \"message\": str(e)}",
+        "detail": "directory_synchronizer",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def main():\n    rprint(\"[green]👋 Welcome![/green]\\n\")\n    questions = [\n        {\n            \"type\": \"list\",\n            \"name\": \"action\",\n            \"message\": \"What would you like to do?\",\n            \"choices\": [\n                \"Encrypt\",\n                \"Decrypt\",",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "encrypt",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def encrypt():\n    rprint(\"[yellow]=============================================[yello]\\n\")\n    rprint(\"[red]Cybersecurity[/red] - [yellow]Final Project[yello]\")\n    rprint(\"\\n[yellow]=============================================[yello]\\n\")\n    folder_name = typer.prompt(\"Give the path you'd like to encrypt\")\n    # Check if the folder exists\n    if not os.path.exists(folder_name):\n        rprint(f\"[red]❌ Folder not found[/red]\")\n        exit()\n    else:",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "decrypt",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def decrypt():\n    rprint(\"[yellow]=============================================[yello]\\n\")\n    rprint(\"[red]Cyber Security[/red] - [yellow]Final Project[yello]\")\n    rprint(\"\\n[yellow]=============================================[yello]\\n\")\n    # Search for the file\n    if os.path.exists(\"encrypted_data.txt\"):\n        rprint(f\"[green]✅ File found[/green]\")\n        with open(\"encrypted_data.txt\", \"r\") as f:\n            encrypted = f.read()\n    else:",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "app = typer.Typer()\n@app.callback(invoke_without_command=True)\ndef main():\n    rprint(\"[green]👋 Welcome![/green]\\n\")\n    questions = [\n        {\n            \"type\": \"list\",\n            \"name\": \"action\",\n            \"message\": \"What would you like to do?\",\n            \"choices\": [",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "VigenereCipher",
+        "kind": 6,
+        "importPath": "vingere_cipher",
+        "description": "vingere_cipher",
+        "peekOfCode": "class VigenereCipher:\n    def __init__(self, key):\n        self.key = key\n    def _extend_key(self, length):\n        key = self.key\n        return (key * (length // len(key))) + key[:length % len(key)]\n    def _shift_character(self, char, shift):\n        if char.isalpha():\n            base = ord('A') if char.isupper() else ord('a')\n            return chr((ord(char) - base + shift) % 26 + base)",
+        "detail": "vingere_cipher",
+        "documentation": {}
+    }
+]
