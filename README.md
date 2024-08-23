@@ -21,7 +21,7 @@ This project can encrypt whole directories (including their content) with a spec
 7. To decrypt: `python3 main.py`
 8. choose `decrypt`
 9. specify the key written previously
-10. Your folder is restored (in case you deleted it, otherwise nothing changed :/ )
+10. Saved to folder `result`
 
 ### COMMANDS
 `python3 main.py encrypt` - will encrypt the directory that you'll specify with a key that you'll provide
