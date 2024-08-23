@@ -10,11 +10,14 @@ This project can encrypt whole directories (including their content) with a spec
 
 `python3 main.py` - opens an radio button to select whether you want to encrypt or load the directory.
 
-## Used Libraries
-INSTALL ALL: `pip install -r requirements.txt`
+## USED PACKAGES
 
-OR SEPARATELY
+#### Install Everything Together
+`pip install -r requirements.txt`
 
+#### Install Every Library Separately
 Typer: `pip install "typer[all]"`
+
 PyInquirer: `pip install PyInquirer`
+
 Rich: `pip install rich`
