@@ -5,7 +5,8 @@ from rich import print as rprint
 from directory_retriever import DirectoryRetriever
 from dict_string_converter import DictStringConverter
 from directory_synchronizer import DirectorySynchronizer
-from vingere_cipher import VigenereCipher
+from vigenere_cipher import VigenereCipher
+from vigenere_hack import VigenereHack
 
 app = typer.Typer()
 
@@ -21,6 +22,7 @@ def main():
             "choices": [
                 "Encrypt",
                 "Decrypt",
+                "Hack"
             ],
         },
     ]
@@ -32,11 +34,13 @@ def main():
         encrypt()
     elif action == "Decrypt":
         decrypt()
+    elif action == "Hack":
+        hack()
 
 @app.command("encrypt")
 def encrypt():
     rprint("[yellow]=============================================[yello]\n")
-    rprint("[red]Cybersecurity[/red] - [yellow]Final Project[yello]")
+    rprint("[red]CYBERSECURITY[/red] - [yellow]FINAL PROJECT[yello]")
     rprint("\n[yellow]=============================================[yello]\n")
 
     folder_name = typer.prompt("Give the path you'd like to encrypt")
@@ -114,6 +118,37 @@ def decrypt():
     except:
         rprint("[red]❌ Key is not valid[/red]")
         exit()
+
+@app.command("hack")
+def hack():
+    if os.path.exists("encrypted_data.txt"):
+        rprint(f"[green]✅ Encrypted file found. Hacking... [/green]")
+        with open("encrypted_data.txt", "r") as f:
+            encrypted = f.read()
+    else:
+        rprint(f"[red]❌ File not found[/red]")
+        exit()
+
+    hackerAgent = VigenereHack(encrypted)
+
+    # NOT NECESSARILY ACCURATE! The longer the encrypted data is - the better algorithm works (because more data for analysis)
+    estimatedKey = hackerAgent.find_key()
+
+    vigenereCipher = VigenereCipher(estimatedKey)
+    estimatedContent = vigenereCipher.decrypt(encrypted)
+
+    # Save the decrypted data
+    with open("hacked.txt", "w") as f:
+        f.write(estimatedContent)
+
+    rprint("\n[yellow]=============================================[yello]\n")
+
+    rprint("[blue]You can view the decrypted data at hacked.txt[/blue]")
+    rprint(f"[green]ESTIMATED KEY: {estimatedKey}[/green]")
+    # NOTIFY THAT IT MAY BE NOT ACCURATE
+    rprint(f"[red]THE KEY MAY BE NOT ACCURATE: LONGER KEYS = LESS ACCURATE, LONGER ENCRYPTED CONTENT = MORE ACCURATE! [/red]")
+
+    rprint("\n[yellow]=============================================[yello]\n")
 
 if __name__ == "__main__":
     app()

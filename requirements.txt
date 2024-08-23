@@ -65,7 +65,7 @@ opencv-python-headless==4.10.0.84
 packaging==24.1
 pillow==10.4.0
 prettytable==3.10.0
-prompt_toolkit==3.0.47
+prompt_toolkit
 protobuf==5.27.2
 psutil==6.0.0
 PyAutoGUI==0.9.54

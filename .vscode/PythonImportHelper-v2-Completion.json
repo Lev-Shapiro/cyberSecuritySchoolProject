@@ -68,10 +68,44 @@
     },
     {
         "label": "VigenereCipher",
-        "importPath": "vingere_cipher",
-        "description": "vingere_cipher",
+        "importPath": "vigenere_cipher",
+        "description": "vigenere_cipher",
         "isExtraImport": true,
-        "detail": "vingere_cipher",
+        "detail": "vigenere_cipher",
+        "documentation": {}
+    },
+    {
+        "label": "VigenereHack",
+        "importPath": "vigenere_hack",
+        "description": "vigenere_hack",
+        "isExtraImport": true,
+        "detail": "vigenere_hack",
+        "documentation": {}
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "string",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "string",
+        "description": "string",
+        "detail": "string",
+        "documentation": {}
+    },
+    {
+        "label": "Counter",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
         "documentation": {}
     },
     {
@@ -124,7 +158,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def encrypt():\n    rprint(\"[yellow]=============================================[yello]\\n\")\n    rprint(\"[red]Cybersecurity[/red] - [yellow]Final Project[yello]\")\n    rprint(\"\\n[yellow]=============================================[yello]\\n\")\n    folder_name = typer.prompt(\"Give the path you'd like to encrypt\")\n    # Check if the folder exists\n    if not os.path.exists(folder_name):\n        rprint(f\"[red]❌ Folder not found[/red]\")\n        exit()\n    else:",
+        "peekOfCode": "def encrypt():\n    rprint(\"[yellow]=============================================[yello]\\n\")\n    rprint(\"[red]CYBERSECURITY[/red] - [yellow]FINAL PROJECT[yello]\")\n    rprint(\"\\n[yellow]=============================================[yello]\\n\")\n    folder_name = typer.prompt(\"Give the path you'd like to encrypt\")\n    # Check if the folder exists\n    if not os.path.exists(folder_name):\n        rprint(f\"[red]❌ Folder not found[/red]\")\n        exit()\n    else:",
         "detail": "main",
         "documentation": {}
     },
@@ -134,6 +168,15 @@
         "importPath": "main",
         "description": "main",
         "peekOfCode": "def decrypt():\n    rprint(\"[yellow]=============================================[yello]\\n\")\n    rprint(\"[red]Cyber Security[/red] - [yellow]Final Project[yello]\")\n    rprint(\"\\n[yellow]=============================================[yello]\\n\")\n    # Search for the file\n    if os.path.exists(\"encrypted_data.txt\"):\n        rprint(f\"[green]✅ File found[/green]\")\n        with open(\"encrypted_data.txt\", \"r\") as f:\n            encrypted = f.read()\n    else:",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "hack",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def hack():\n    if os.path.exists(\"encrypted_data.txt\"):\n        rprint(f\"[green]✅ Encrypted file found. Hacking... [/green]\")\n        with open(\"encrypted_data.txt\", \"r\") as f:\n            encrypted = f.read()\n    else:\n        rprint(f\"[red]❌ File not found[/red]\")\n        exit()\n    hackerAgent = VigenereHack(encrypted)\n    # NOT NECESSARILY ACCURATE! The longer the encrypted data is - the better algorithm works (because more data for analysis)",
         "detail": "main",
         "documentation": {}
     },
@@ -149,10 +192,19 @@
     {
         "label": "VigenereCipher",
         "kind": 6,
-        "importPath": "vingere_cipher",
-        "description": "vingere_cipher",
+        "importPath": "vigenere_cipher",
+        "description": "vigenere_cipher",
         "peekOfCode": "class VigenereCipher:\n    def __init__(self, key):\n        self.key = key\n    def _extend_key(self, length):\n        key = self.key\n        return (key * (length // len(key))) + key[:length % len(key)]\n    def _shift_character(self, char, shift):\n        if char.isalpha():\n            base = ord('A') if char.isupper() else ord('a')\n            return chr((ord(char) - base + shift) % 26 + base)",
-        "detail": "vingere_cipher",
+        "detail": "vigenere_cipher",
+        "documentation": {}
+    },
+    {
+        "label": "VigenereHack",
+        "kind": 6,
+        "importPath": "vigenere_hack",
+        "description": "vigenere_hack",
+        "peekOfCode": "class VigenereHack:\n    def __init__(self, ciphertext):\n        self.ciphertext = ciphertext.upper()\n        self.alphabet = string.ascii_uppercase\n        self.freq_eng = {\n            'A': 8.2, 'B': 1.5, 'C': 2.8, 'D': 4.3, 'E': 13.0, 'F': 2.2, 'G': 2.0,\n            'H': 6.1, 'I': 7.0, 'J': 0.15, 'K': 0.77, 'L': 4.0, 'M': 2.4, 'N': 6.7,\n            'O': 7.5, 'P': 1.9, 'Q': 0.095, 'R': 6.0, 'S': 6.3, 'T': 9.1, 'U': 2.8,\n            'V': 0.98, 'W': 2.4, 'X': 0.15, 'Y': 2.0, 'Z': 0.074\n        }",
+        "detail": "vigenere_hack",
         "documentation": {}
     }
 ]
