@@ -1,3 +1,5 @@
+![Screenshot showing how the program works](./preview.png)
+
 # Introduction
 As part of my Cybersecurity studies I was asked to make a final project related to cybersecurity.
 
