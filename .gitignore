@@ -1,0 +1,4 @@
+.vscode/
+__pycache__/
+encrypted_data.txt
+/result

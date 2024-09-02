@@ -42,6 +42,6 @@ This project can encrypt whole directories (including their content) with a spec
 #### Install Every Library Separately
 Typer: `pip install "typer[all]"`
 
-PyInquirer: `pip install PyInquirer`
+PyInquirer: `pip install questionary`
 
 Rich: `pip install rich`
