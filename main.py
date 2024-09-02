@@ -1,6 +1,6 @@
 import os
 import typer
-from PyInquirer import prompt
+import questionary
 from rich import print as rprint
 from directory_retriever import DirectoryRetriever
 from dict_string_converter import DictStringConverter
@@ -14,21 +14,10 @@ app = typer.Typer()
 def main():
     rprint("[green]👋 Welcome![/green]\n")
 
-    questions = [
-        {
-            "type": "list",
-            "name": "action",
-            "message": "What would you like to do?",
-            "choices": [
-                "Encrypt",
-                "Decrypt",
-                "Hack"
-            ],
-        },
-    ]
-
-    answers = prompt(questions)
-    action = answers["action"]
+    action = questionary.select(
+        "What would you like to do?",
+        choices=["Encrypt", "Decrypt", "Hack"]
+    ).ask()
 
     if action == "Encrypt":
         encrypt()
@@ -39,11 +28,11 @@ def main():
 
 @app.command("encrypt")
 def encrypt():
-    rprint("[yellow]=============================================[yello]\n")
-    rprint("[red]CYBERSECURITY[/red] - [yellow]FINAL PROJECT[yello]")
-    rprint("\n[yellow]=============================================[yello]\n")
+    rprint("[yellow]=============================================[/yellow]\n")
+    rprint("[red]CYBERSECURITY[/red] - [yellow]FINAL PROJECT[/yellow]")
+    rprint("\n[yellow]=============================================[/yellow]\n")
 
-    folder_name = typer.prompt("Give the path you'd like to encrypt")
+    folder_name = questionary.path("Give the path you'd like to encrypt").ask()
 
     # Check if the folder exists
     if not os.path.exists(folder_name):
@@ -52,7 +41,7 @@ def encrypt():
     else:
         rprint(f"[green]✅ Folder found[/green]")
 
-    key = typer.prompt("Specify encryption key")
+    key = questionary.text("Specify encryption key").ask()
 
     # Check if the key is valid
     if len(key) == 0:
@@ -74,16 +63,15 @@ def encrypt():
     with open("encrypted_data.txt", "w") as f:
         f.write(encrypted)
 
-    rprint("\n[yellow]=============================================[yello]\n")
+    rprint("\n[yellow]=============================================[/yellow]\n")
 
     rprint("[blue]You can view the encrypted data at encrypted_data.txt[/blue]")
 
-
 @app.command("load")
 def decrypt():
-    rprint("[yellow]=============================================[yello]\n")
-    rprint("[red]Cyber Security[/red] - [yellow]Final Project[yello]")
-    rprint("\n[yellow]=============================================[yello]\n")
+    rprint("[yellow]=============================================[/yellow]\n")
+    rprint("[red]Cyber Security[/red] - [yellow]Final Project[/yellow]")
+    rprint("\n[yellow]=============================================[/yellow]\n")
 
     # Search for the file
     if os.path.exists("encrypted_data.txt"):
@@ -94,7 +82,7 @@ def decrypt():
         rprint(f"[red]❌ File not found[/red]")
         exit()
 
-    key = typer.prompt("Specify encryption key")
+    key = questionary.text("Specify encryption key").ask()
 
     # Check if the key is valid
     if len(key) == 0:
@@ -104,13 +92,12 @@ def decrypt():
     cipher = VigenereCipher(key)
     decrypted = cipher.decrypt(encrypted)
 
-    rprint("\n[yellow]=============================================[yello]\n")
+    rprint("\n[yellow]=============================================[/yellow]\n")
 
     try:
         # string to dictionary
         converted_dist = DictStringConverter.convertToDict(decrypted)
         synchronizer = DirectorySynchronizer('result')
-
 
         synchronizer.synchronize(converted_dist)
 
@@ -141,14 +128,14 @@ def hack():
     with open("hacked.txt", "w") as f:
         f.write(estimatedContent)
 
-    rprint("\n[yellow]=============================================[yello]\n")
+    rprint("\n[yellow]=============================================[/yellow]\n")
 
     rprint("[blue]You can view the decrypted data at hacked.txt[/blue]")
     rprint(f"[green]ESTIMATED KEY: {estimatedKey}[/green]")
     # NOTIFY THAT IT MAY BE NOT ACCURATE
     rprint(f"[red]THE KEY MAY BE NOT ACCURATE: LONGER KEYS = LESS ACCURATE, LONGER ENCRYPTED CONTENT = MORE ACCURATE! [/red]")
 
-    rprint("\n[yellow]=============================================[yello]\n")
+    rprint("\n[yellow]=============================================[/yellow]\n")
 
 if __name__ == "__main__":
     app()

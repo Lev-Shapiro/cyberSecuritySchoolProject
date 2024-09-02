@@ -27,11 +27,12 @@
         "documentation": {}
     },
     {
-        "label": "prompt",
-        "importPath": "PyInquirer",
-        "description": "PyInquirer",
+        "label": "questionary",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "PyInquirer",
+        "importPath": "questionary",
+        "description": "questionary",
+        "detail": "questionary",
         "documentation": {}
     },
     {
@@ -149,7 +150,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def main():\n    rprint(\"[green]👋 Welcome![/green]\\n\")\n    questions = [\n        {\n            \"type\": \"list\",\n            \"name\": \"action\",\n            \"message\": \"What would you like to do?\",\n            \"choices\": [\n                \"Encrypt\",\n                \"Decrypt\",",
+        "peekOfCode": "def main():\n    rprint(\"[green]👋 Welcome![/green]\\n\")\n    action = questionary.select(\n        \"What would you like to do?\",\n        choices=[\"Encrypt\", \"Decrypt\", \"Hack\"]\n    ).ask()\n    if action == \"Encrypt\":\n        encrypt()\n    elif action == \"Decrypt\":\n        decrypt()",
         "detail": "main",
         "documentation": {}
     },
@@ -158,7 +159,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def encrypt():\n    rprint(\"[yellow]=============================================[yello]\\n\")\n    rprint(\"[red]CYBERSECURITY[/red] - [yellow]FINAL PROJECT[yello]\")\n    rprint(\"\\n[yellow]=============================================[yello]\\n\")\n    folder_name = typer.prompt(\"Give the path you'd like to encrypt\")\n    # Check if the folder exists\n    if not os.path.exists(folder_name):\n        rprint(f\"[red]❌ Folder not found[/red]\")\n        exit()\n    else:",
+        "peekOfCode": "def encrypt():\n    rprint(\"[yellow]=============================================[/yellow]\\n\")\n    rprint(\"[red]CYBERSECURITY[/red] - [yellow]FINAL PROJECT[/yellow]\")\n    rprint(\"\\n[yellow]=============================================[/yellow]\\n\")\n    folder_name = questionary.path(\"Give the path you'd like to encrypt\").ask()\n    # Check if the folder exists\n    if not os.path.exists(folder_name):\n        rprint(f\"[red]❌ Folder not found[/red]\")\n        exit()\n    else:",
         "detail": "main",
         "documentation": {}
     },
@@ -167,7 +168,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def decrypt():\n    rprint(\"[yellow]=============================================[yello]\\n\")\n    rprint(\"[red]Cyber Security[/red] - [yellow]Final Project[yello]\")\n    rprint(\"\\n[yellow]=============================================[yello]\\n\")\n    # Search for the file\n    if os.path.exists(\"encrypted_data.txt\"):\n        rprint(f\"[green]✅ File found[/green]\")\n        with open(\"encrypted_data.txt\", \"r\") as f:\n            encrypted = f.read()\n    else:",
+        "peekOfCode": "def decrypt():\n    rprint(\"[yellow]=============================================[/yellow]\\n\")\n    rprint(\"[red]Cyber Security[/red] - [yellow]Final Project[/yellow]\")\n    rprint(\"\\n[yellow]=============================================[/yellow]\\n\")\n    # Search for the file\n    if os.path.exists(\"encrypted_data.txt\"):\n        rprint(f\"[green]✅ File found[/green]\")\n        with open(\"encrypted_data.txt\", \"r\") as f:\n            encrypted = f.read()\n    else:",
         "detail": "main",
         "documentation": {}
     },
@@ -185,7 +186,7 @@
         "kind": 5,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "app = typer.Typer()\n@app.callback(invoke_without_command=True)\ndef main():\n    rprint(\"[green]👋 Welcome![/green]\\n\")\n    questions = [\n        {\n            \"type\": \"list\",\n            \"name\": \"action\",\n            \"message\": \"What would you like to do?\",\n            \"choices\": [",
+        "peekOfCode": "app = typer.Typer()\n@app.callback(invoke_without_command=True)\ndef main():\n    rprint(\"[green]👋 Welcome![/green]\\n\")\n    action = questionary.select(\n        \"What would you like to do?\",\n        choices=[\"Encrypt\", \"Decrypt\", \"Hack\"]\n    ).ask()\n    if action == \"Encrypt\":\n        encrypt()",
         "detail": "main",
         "documentation": {}
     },
